@@ -1,0 +1,101 @@
+{
+ "actions": [],
+ "creation": "2026-10-04 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "connection_tab",
+  "enabled",
+  "test_mode",
+  "column_break_conn",
+  "timeout",
+  "credentials_section",
+  "tenant_id",
+  "client_id",
+  "column_break_cred",
+  "client_secret"
+ ],
+ "fields": [
+  {
+   "fieldname": "connection_tab",
+   "fieldtype": "Tab Break",
+   "label": "Connection"
+  },
+  {
+   "description": "Master switch for the Microsoft 365 connection (used by Outlook, and later SharePoint).",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "description": "Uses a built-in fake Microsoft 365 tenant: nothing is sent to Microsoft and no credentials are needed. For demos and testing only.",
+   "fieldname": "test_mode",
+   "fieldtype": "Check",
+   "label": "Test Mode"
+  },
+  {
+   "fieldname": "column_break_conn",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "30",
+   "fieldname": "timeout",
+   "fieldtype": "Int",
+   "label": "Timeout (Seconds)",
+   "non_negative": 1
+  },
+  {
+   "depends_on": "eval:!doc.test_mode",
+   "description": "App registration in Microsoft Entra ID with application permissions (see SETUP.md).",
+   "fieldname": "credentials_section",
+   "fieldtype": "Section Break",
+   "label": "Azure App Registration"
+  },
+  {
+   "fieldname": "tenant_id",
+   "fieldtype": "Data",
+   "label": "Tenant ID",
+   "mandatory_depends_on": "eval:doc.enabled && !doc.test_mode"
+  },
+  {
+   "fieldname": "client_id",
+   "fieldtype": "Data",
+   "label": "Client (Application) ID",
+   "mandatory_depends_on": "eval:doc.enabled && !doc.test_mode"
+  },
+  {
+   "fieldname": "column_break_cred",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "client_secret",
+   "fieldtype": "Password",
+   "label": "Client Secret",
+   "length": 512,
+   "mandatory_depends_on": "eval:doc.enabled && !doc.test_mode"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-04 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "MS Core",
+ "name": "Microsoft 365 Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
