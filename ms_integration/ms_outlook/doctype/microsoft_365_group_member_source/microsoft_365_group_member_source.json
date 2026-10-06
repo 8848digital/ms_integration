@@ -1,0 +1,62 @@
+{
+ "actions": [],
+ "creation": "2026-10-04 12:00:00.000000",
+ "doctype": "DocType",
+ "editable_grid": 1,
+ "engine": "InnoDB",
+ "field_order": [
+  "source_doctype",
+  "link_field",
+  "member_field",
+  "source_condition"
+ ],
+ "fields": [
+  {
+   "columns": 3,
+   "fieldname": "source_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "Source DocType",
+   "options": "DocType",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "description": "Field on the source pointing to this rule's document.",
+   "fieldname": "link_field",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Link Field",
+   "reqd": 1
+  },
+  {
+   "columns": 2,
+   "description": "Path to the person, e.g. <code>email</code>, <code>employees.employee</code>.",
+   "fieldname": "member_field",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Member Field",
+   "reqd": 1
+  },
+  {
+   "columns": 3,
+   "description": "Python on the source, e.g. <code>not doc.unsubscribed</code>.",
+   "fieldname": "source_condition",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Only When"
+  }
+ ],
+ "istable": 1,
+ "links": [],
+ "modified": "2026-10-04 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "MS Outlook",
+ "name": "Microsoft 365 Group Member Source",
+ "owner": "Administrator",
+ "permissions": [],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": []
+}

@@ -1,0 +1,99 @@
+{
+ "actions": [],
+ "autoname": "field:rule_name",
+ "creation": "2026-10-04 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "rule_name",
+  "enabled",
+  "condition",
+  "assign_section",
+  "licenses",
+  "groups",
+  "description"
+ ],
+ "fields": [
+  {
+   "fieldname": "rule_name",
+   "fieldtype": "Data",
+   "label": "Rule Name",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "description": "Python expression on the Employee; empty = every employee. Examples: <code>doc.employment_type == \"Full-time\"</code>, <code>doc.branch == \"Egypt\"</code>. Every matching rule applies.",
+   "fieldname": "condition",
+   "fieldtype": "Code",
+   "label": "Condition",
+   "options": "Python"
+  },
+  {
+   "fieldname": "assign_section",
+   "fieldtype": "Section Break",
+   "label": "Assign"
+  },
+  {
+   "fieldname": "licenses",
+   "fieldtype": "Table MultiSelect",
+   "label": "Licenses",
+   "options": "Microsoft 365 License Item"
+  },
+  {
+   "fieldname": "groups",
+   "fieldtype": "Table MultiSelect",
+   "label": "Groups",
+   "options": "Microsoft 365 Group Item"
+  },
+  {
+   "fieldname": "description",
+   "fieldtype": "Small Text",
+   "label": "Notes"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-04 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "MS Outlook",
+ "name": "Microsoft 365 Provisioning Rule",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

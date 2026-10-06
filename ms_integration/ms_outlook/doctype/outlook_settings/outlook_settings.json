@@ -1,0 +1,321 @@
+{
+ "actions": [],
+ "creation": "2026-10-04 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "outlook_tab",
+  "enabled",
+  "directory_section",
+  "sync_directory_daily",
+  "link_existing_accounts",
+  "column_break_dir",
+  "last_directory_sync",
+  "accounts_tab",
+  "auto_create",
+  "create_condition",
+  "required_fields",
+  "address_section",
+  "email_domain",
+  "email_pattern",
+  "min_last_letters",
+  "column_break_addr",
+  "drop_prefixes",
+  "email_field",
+  "create_erpnext_user",
+  "details_section",
+  "usage_location",
+  "manager_field",
+  "column_break_det",
+  "sync_updates",
+  "field_map",
+  "offboarding_tab",
+  "disable_condition",
+  "remove_licenses_on_exit",
+  "remove_groups_on_exit",
+  "column_break_off",
+  "revoke_sessions",
+  "enable_on_return",
+  "delete_after_days",
+  "welcome_tab",
+  "send_welcome_email",
+  "welcome_recipient_field",
+  "welcome_via",
+  "column_break_wel",
+  "sender_mailbox",
+  "welcome_email_template"
+ ],
+ "fields": [
+  {
+   "fieldname": "outlook_tab",
+   "fieldtype": "Tab Break",
+   "label": "Outlook"
+  },
+  {
+   "description": "Turns on accounts, licenses, groups and document groups. The connection itself is in Microsoft 365 Settings.",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "label": "Enabled"
+  },
+  {
+   "fieldname": "directory_section",
+   "fieldtype": "Section Break",
+   "label": "Directory Sync"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_directory_daily",
+   "fieldtype": "Check",
+   "label": "Sync Licenses, Groups and Accounts Daily"
+  },
+  {
+   "default": "1",
+   "description": "During sync, employees whose email (field below) already has a Microsoft 365 account get a Microsoft 365 Account record.",
+   "fieldname": "link_existing_accounts",
+   "fieldtype": "Check",
+   "label": "Link Existing Microsoft 365 Accounts"
+  },
+  {
+   "fieldname": "column_break_dir",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_directory_sync",
+   "fieldtype": "Datetime",
+   "label": "Last Directory Sync",
+   "read_only": 1
+  },
+  {
+   "fieldname": "accounts_tab",
+   "fieldtype": "Tab Break",
+   "label": "New Accounts"
+  },
+  {
+   "default": "1",
+   "fieldname": "auto_create",
+   "fieldtype": "Check",
+   "label": "Create Accounts Automatically"
+  },
+  {
+   "default": "doc.status == \"Active\"",
+   "description": "Python expression on the Employee, e.g. <code>doc.status == \"Active\"</code>. Also used to enable the account again for a returning employee.",
+   "fieldname": "create_condition",
+   "fieldtype": "Code",
+   "label": "Create When",
+   "options": "Python"
+  },
+  {
+   "default": "first_name\nlast_name",
+   "description": "One Employee field per line; the account is not created while any is empty.",
+   "fieldname": "required_fields",
+   "fieldtype": "Small Text",
+   "label": "Required Employee Fields"
+  },
+  {
+   "fieldname": "address_section",
+   "fieldtype": "Section Break",
+   "label": "Email Address"
+  },
+  {
+   "description": "Verified domain of the tenant, e.g. <code>example.com</code>.",
+   "fieldname": "email_domain",
+   "fieldtype": "Data",
+   "label": "Email Domain",
+   "mandatory_depends_on": "eval:doc.enabled"
+  },
+  {
+   "default": "{first}.{last}",
+   "description": "Tokens: <code>{first}</code>, <code>{middle}</code>, <code>{last}</code>, <code>{first_initial}</code>. <code>{last}</code> starts with the letters below and grows one letter at a time until the address is free in ERPNext and Microsoft 365.",
+   "fieldname": "email_pattern",
+   "fieldtype": "Data",
+   "label": "Address Pattern"
+  },
+  {
+   "default": "1",
+   "description": "0 = the whole last name.",
+   "fieldname": "min_last_letters",
+   "fieldtype": "Int",
+   "label": "Letters of Last Name to Start With",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "column_break_addr",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "One per line, e.g. <code>al</code>, <code>el</code>. Dropped from the last name when written as a separate word or with a hyphen (Al Harbi, Al-Harbi \u2192 harbi).",
+   "fieldname": "drop_prefixes",
+   "fieldtype": "Small Text",
+   "label": "Name Prefixes to Drop"
+  },
+  {
+   "default": "company_email",
+   "fieldname": "email_field",
+   "fieldtype": "Data",
+   "label": "Save Email In Employee Field"
+  },
+  {
+   "description": "Creates (or links) an ERPNext User with the new email and sets it on the Employee's User ID if empty \u2014 for Microsoft sign-in to ERPNext.",
+   "fieldname": "create_erpnext_user",
+   "fieldtype": "Check",
+   "label": "Create ERPNext User for the New Email"
+  },
+  {
+   "fieldname": "details_section",
+   "fieldtype": "Section Break",
+   "label": "Account Details"
+  },
+  {
+   "default": "",
+   "description": "Two-letter country code (e.g. SA, IN, AE). Microsoft requires it before a license can be assigned.",
+   "fieldname": "usage_location",
+   "fieldtype": "Data",
+   "label": "Usage Location",
+   "length": 2,
+   "mandatory_depends_on": "eval:doc.enabled"
+  },
+  {
+   "default": "reports_to",
+   "description": "Employee field holding the manager (an Employee). Empty = don't set the manager.",
+   "fieldname": "manager_field",
+   "fieldtype": "Data",
+   "label": "Manager Field"
+  },
+  {
+   "fieldname": "column_break_det",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "sync_updates",
+   "fieldtype": "Check",
+   "label": "Update Microsoft 365 When the Employee Changes"
+  },
+  {
+   "description": "Employee field (or path like <code>department.department_name</code>) \u2192 Microsoft 365 user property. Name fields are always sent.",
+   "fieldname": "field_map",
+   "fieldtype": "Table",
+   "label": "Field Mapping",
+   "options": "Microsoft 365 Field Map"
+  },
+  {
+   "fieldname": "offboarding_tab",
+   "fieldtype": "Tab Break",
+   "label": "Offboarding"
+  },
+  {
+   "default": "doc.status in (\"Inactive\", \"Left\")",
+   "fieldname": "disable_condition",
+   "fieldtype": "Code",
+   "label": "Disable When",
+   "options": "Python"
+  },
+  {
+   "default": "1",
+   "fieldname": "remove_licenses_on_exit",
+   "fieldtype": "Check",
+   "label": "Remove Licenses"
+  },
+  {
+   "default": "1",
+   "fieldname": "remove_groups_on_exit",
+   "fieldtype": "Check",
+   "label": "Remove from Groups"
+  },
+  {
+   "fieldname": "column_break_off",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "1",
+   "fieldname": "revoke_sessions",
+   "fieldtype": "Check",
+   "label": "Sign Out of All Sessions"
+  },
+  {
+   "default": "1",
+   "description": "Rehire: enables the account, assigns the rule licenses and groups and sends a new password.",
+   "fieldname": "enable_on_return",
+   "fieldtype": "Check",
+   "label": "Enable Again When the Create Condition Matches"
+  },
+  {
+   "default": "0",
+   "description": "0 = never delete. Deleted users stay in Microsoft's recycle bin for 30 days.",
+   "fieldname": "delete_after_days",
+   "fieldtype": "Int",
+   "label": "Delete Disabled Accounts After (Days)",
+   "non_negative": 1
+  },
+  {
+   "fieldname": "welcome_tab",
+   "fieldtype": "Tab Break",
+   "label": "Welcome Email"
+  },
+  {
+   "default": "1",
+   "fieldname": "send_welcome_email",
+   "fieldtype": "Check",
+   "label": "Send Welcome Email with the Password"
+  },
+  {
+   "default": "personal_email",
+   "depends_on": "send_welcome_email",
+   "fieldname": "welcome_recipient_field",
+   "fieldtype": "Data",
+   "label": "Send To Employee Field"
+  },
+  {
+   "default": "Microsoft 365",
+   "depends_on": "send_welcome_email",
+   "description": "Microsoft 365: sent by Microsoft Graph from the mailbox below; the password is not stored anywhere. ERPNext Email: uses the site's outgoing email account.",
+   "fieldname": "welcome_via",
+   "fieldtype": "Select",
+   "label": "Send Through",
+   "options": "Microsoft 365\nERPNext Email"
+  },
+  {
+   "fieldname": "column_break_wel",
+   "fieldtype": "Column Break"
+  },
+  {
+   "depends_on": "eval:doc.send_welcome_email && doc.welcome_via == \"Microsoft 365\"",
+   "description": "e.g. <code>it@example.com</code>. In Test Mode any address of the fake tenant works, e.g. <code>it.admin@&lt;your domain&gt;</code>.",
+   "fieldname": "sender_mailbox",
+   "fieldtype": "Data",
+   "label": "Sender Mailbox",
+   "mandatory_depends_on": "eval:doc.enabled && doc.send_welcome_email && doc.welcome_via == \"Microsoft 365\""
+  },
+  {
+   "depends_on": "send_welcome_email",
+   "description": "Optional. Jinja with <code>doc</code> (Employee), <code>email</code>, <code>password</code>, <code>login_url</code>. Empty = built-in message.",
+   "fieldname": "welcome_email_template",
+   "fieldtype": "Link",
+   "label": "Email Template",
+   "options": "Email Template"
+  }
+ ],
+ "issingle": 1,
+ "links": [],
+ "modified": "2026-10-04 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "MS Outlook",
+ "name": "Outlook Settings",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "email": 1,
+   "print": 1,
+   "read": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}

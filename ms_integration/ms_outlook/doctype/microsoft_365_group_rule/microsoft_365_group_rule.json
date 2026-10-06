@@ -1,0 +1,209 @@
+{
+ "actions": [],
+ "autoname": "field:reference_doctype",
+ "creation": "2026-10-04 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "reference_doctype",
+  "enabled",
+  "condition",
+  "group_type",
+  "column_break_rule",
+  "name_template",
+  "description_template",
+  "visibility",
+  "members_section",
+  "member_fields",
+  "owner_fields",
+  "member_sources",
+  "remove_missing_members",
+  "close_section",
+  "close_condition",
+  "on_close",
+  "column_break_close",
+  "on_delete",
+  "write_back_section",
+  "group_id_field",
+  "column_break_wb",
+  "group_email_field"
+ ],
+ "fields": [
+  {
+   "description": "One rule per DocType, e.g. Project, Email Group, Opportunity.",
+   "fieldname": "reference_doctype",
+   "fieldtype": "Link",
+   "in_list_view": 1,
+   "label": "DocType",
+   "options": "DocType",
+   "reqd": 1,
+   "unique": 1
+  },
+  {
+   "default": "1",
+   "fieldname": "enabled",
+   "fieldtype": "Check",
+   "in_list_view": 1,
+   "label": "Enabled"
+  },
+  {
+   "description": "Python on the document; empty = every document. e.g. <code>doc.status == \"Open\"</code>",
+   "fieldname": "condition",
+   "fieldtype": "Code",
+   "label": "Create When",
+   "options": "Python"
+  },
+  {
+   "default": "Microsoft 365",
+   "description": "Microsoft 365: shared mailbox, calendar, Teams-ready. Security: for access (SharePoint, apps).",
+   "fieldname": "group_type",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "label": "Group Type",
+   "options": "Microsoft 365\nSecurity"
+  },
+  {
+   "fieldname": "column_break_rule",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "{{ doc.name }}",
+   "description": "Jinja, e.g. <code>PRJ - {{ doc.project_name }}</code>.",
+   "fieldname": "name_template",
+   "fieldtype": "Data",
+   "label": "Group Name",
+   "reqd": 1
+  },
+  {
+   "description": "Jinja; optional.",
+   "fieldname": "description_template",
+   "fieldtype": "Small Text",
+   "label": "Description"
+  },
+  {
+   "default": "Private",
+   "depends_on": "eval:doc.group_type == \"Microsoft 365\"",
+   "fieldname": "visibility",
+   "fieldtype": "Select",
+   "label": "Visibility",
+   "options": "Private\nPublic"
+  },
+  {
+   "description": "Field paths follow child tables and links: <code>users.user</code>, <code>employee</code>, <code>owner</code>. Values may be Users, Employees or email addresses.",
+   "fieldname": "members_section",
+   "fieldtype": "Section Break",
+   "label": "Members"
+  },
+  {
+   "description": "One path per line.",
+   "fieldname": "member_fields",
+   "fieldtype": "Small Text",
+   "label": "Member Fields"
+  },
+  {
+   "description": "One path per line. Owners are also members.",
+   "fieldname": "owner_fields",
+   "fieldtype": "Small Text",
+   "label": "Owner Fields"
+  },
+  {
+   "fieldname": "member_sources",
+   "fieldtype": "Table",
+   "label": "Members from Linked Documents",
+   "options": "Microsoft 365 Group Member Source"
+  },
+  {
+   "default": "1",
+   "fieldname": "remove_missing_members",
+   "fieldtype": "Check",
+   "label": "Remove Members No Longer Listed"
+  },
+  {
+   "fieldname": "close_section",
+   "fieldtype": "Section Break",
+   "label": "When the Document Closes"
+  },
+  {
+   "description": "e.g. <code>doc.status in (\"Completed\", \"Cancelled\")</code>; empty = never.",
+   "fieldname": "close_condition",
+   "fieldtype": "Code",
+   "label": "Close When",
+   "options": "Python"
+  },
+  {
+   "default": "Remove Members",
+   "fieldname": "on_close",
+   "fieldtype": "Select",
+   "label": "Then",
+   "options": "Remove Members\nDelete Group\nNothing"
+  },
+  {
+   "fieldname": "column_break_close",
+   "fieldtype": "Column Break"
+  },
+  {
+   "default": "Keep Group",
+   "fieldname": "on_delete",
+   "fieldtype": "Select",
+   "label": "When the Document Is Deleted",
+   "options": "Delete Group\nKeep Group"
+  },
+  {
+   "fieldname": "write_back_section",
+   "fieldtype": "Section Break",
+   "label": "Save on the Document"
+  },
+  {
+   "fieldname": "group_id_field",
+   "fieldtype": "Data",
+   "label": "Save Group ID In Field"
+  },
+  {
+   "fieldname": "column_break_wb",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "group_email_field",
+   "fieldtype": "Data",
+   "label": "Save Group Email In Field"
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-04 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "MS Outlook",
+ "name": "Microsoft 365 Group Rule",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  }
+ ],
+ "row_format": "Dynamic",
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "track_changes": 1
+}
