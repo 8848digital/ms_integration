@@ -6,7 +6,8 @@
 frappe.ui.form.on("Microsoft 365 Provisioning Rule", {
 	setup(frm) {
 		// Only groups whose members can be changed through Microsoft Graph.
-		frm.set_query("group", "groups", () => ({
+		// Groups is a Table MultiSelect (no grid), so the query goes on the field itself.
+		frm.set_query("groups", () => ({
 			filters: { membership_managed: 1, removed: 0 },
 		}));
 	},

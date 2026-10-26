@@ -15,7 +15,8 @@ const STATUS_COLORS = {
 frappe.ui.form.on("Microsoft 365 Account", {
 	setup(frm) {
 		const manageable = { filters: { membership_managed: 1, removed: 0 } };
-		frm.set_query("group", "groups", () => manageable);
+		// Groups is a Table MultiSelect (no grid), so the query goes on the field itself.
+		frm.set_query("groups", () => manageable);
 	},
 
 	refresh(frm) {
