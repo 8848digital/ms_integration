@@ -1,0 +1,179 @@
+{
+ "actions": [],
+ "autoname": "field:employee",
+ "creation": "2026-10-04 12:00:00.000000",
+ "doctype": "DocType",
+ "engine": "InnoDB",
+ "field_order": [
+  "employee",
+  "employee_name",
+  "status",
+  "column_break_acc",
+  "user_principal_name",
+  "object_id",
+  "account_enabled",
+  "access_section",
+  "licenses",
+  "groups",
+  "history_section",
+  "created_on",
+  "disabled_on",
+  "column_break_hist",
+  "last_synced",
+  "error"
+ ],
+ "fields": [
+  {
+   "fieldname": "employee",
+   "fieldtype": "Link",
+   "in_standard_filter": 1,
+   "label": "Employee",
+   "options": "Employee",
+   "reqd": 1,
+   "set_only_once": 1,
+   "unique": 1
+  },
+  {
+   "fetch_from": "employee.employee_name",
+   "fieldname": "employee_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Employee Name",
+   "read_only": 1
+  },
+  {
+   "default": "Pending",
+   "fieldname": "status",
+   "fieldtype": "Select",
+   "in_list_view": 1,
+   "in_standard_filter": 1,
+   "label": "Status",
+   "options": "Pending\nCreating\nActive\nDisabled\nDeleted\nFailed",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_acc",
+   "fieldtype": "Column Break"
+  },
+  {
+   "description": "Filled when the account is created. If no free address could be built, type one here and click Retry.",
+   "fieldname": "user_principal_name",
+   "fieldtype": "Data",
+   "in_list_view": 1,
+   "label": "Email (Sign-in Name)",
+   "options": "Email",
+   "read_only_depends_on": "eval:doc.object_id"
+  },
+  {
+   "fieldname": "object_id",
+   "fieldtype": "Data",
+   "label": "Microsoft 365 User ID",
+   "read_only": 1
+  },
+  {
+   "fieldname": "account_enabled",
+   "fieldtype": "Check",
+   "label": "Sign-in Allowed",
+   "read_only": 1
+  },
+  {
+   "description": "Add or remove rows and save: the change is made in Microsoft 365 right away.",
+   "fieldname": "access_section",
+   "fieldtype": "Section Break",
+   "label": "Licenses and Groups"
+  },
+  {
+   "fieldname": "licenses",
+   "fieldtype": "Table MultiSelect",
+   "label": "Licenses",
+   "options": "Microsoft 365 License Item"
+  },
+  {
+   "fieldname": "groups",
+   "fieldtype": "Table MultiSelect",
+   "label": "Groups",
+   "options": "Microsoft 365 Group Item"
+  },
+  {
+   "collapsible": 1,
+   "fieldname": "history_section",
+   "fieldtype": "Section Break",
+   "label": "History"
+  },
+  {
+   "fieldname": "created_on",
+   "fieldtype": "Datetime",
+   "label": "Created On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "disabled_on",
+   "fieldtype": "Datetime",
+   "label": "Disabled On",
+   "read_only": 1
+  },
+  {
+   "fieldname": "column_break_hist",
+   "fieldtype": "Column Break"
+  },
+  {
+   "fieldname": "last_synced",
+   "fieldtype": "Datetime",
+   "label": "Last Synced",
+   "read_only": 1
+  },
+  {
+   "fieldname": "error",
+   "fieldtype": "Small Text",
+   "label": "Last Error",
+   "read_only": 1
+  }
+ ],
+ "links": [],
+ "modified": "2026-10-04 12:00:00.000000",
+ "modified_by": "Administrator",
+ "module": "MS Outlook",
+ "name": "Microsoft 365 Account",
+ "naming_rule": "By fieldname",
+ "owner": "Administrator",
+ "permissions": [
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "System Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "create": 1,
+   "delete": 1,
+   "email": 1,
+   "export": 1,
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR Manager",
+   "share": 1,
+   "write": 1
+  },
+  {
+   "print": 1,
+   "read": 1,
+   "report": 1,
+   "role": "HR User"
+  }
+ ],
+ "row_format": "Dynamic",
+ "search_fields": "employee_name,user_principal_name",
+ "show_title_field_in_link": 1,
+ "sort_field": "modified",
+ "sort_order": "DESC",
+ "states": [],
+ "title_field": "employee_name",
+ "track_changes": 1
+}
